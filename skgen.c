@@ -75,10 +75,7 @@ void generate_values(char* matrix)
         
         // Se houver qualquer valor possível, sorteie um dos valores possíveis para definir o da célula
         if(possible_value_count)
-        {
-            matrix[9 * i + j] = possible_values[rand() % possible_value_count];
-            z++;
-        }
+            matrix[z++] = possible_values[rand() % possible_value_count];
 
         // Caso contrário, zerar a tabela e reiniciar
         else
