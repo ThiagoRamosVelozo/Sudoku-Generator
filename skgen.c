@@ -9,8 +9,9 @@ void generate_values(char* matrix)
          box_offset, 
          box_start, 
          possible_value_count, 
+         error_count = 0,
          current_value,
-         neighborhood[9],
+         neighborhood[9],      // Aproveitamento de 1/8 bits por endereço :(
          possible_values[9];
 
     while(z < 81)
@@ -77,12 +78,22 @@ void generate_values(char* matrix)
         if(possible_value_count)
             matrix[z++] = possible_values[rand() % possible_value_count];
 
-        // Caso contrário, zerar a tabela e reiniciar
+        // Caso contrário, zerar os 9 anteriores e recomeçar
         else
         {
-            z = 0;
-            while(k < 81)
-                matrix[k++] = 0;
+            error_count++;
+            while((z > 0) & (k < 9))
+            {
+                matrix[z--] = 0;
+                k--;
+            }
+        }
+
+        // Se bater o máximo de erros, reiniciar tudo
+        if (error_count > 50) {
+            error_count = 0;
+            while(z > 0)
+                matrix[z--] = 0; 
         }
     }
 }
