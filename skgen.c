@@ -11,8 +11,8 @@ void generate_values(char* matrix)
          possible_value_count, 
          error_count = 0,
          current_value,
-         neighborhood[9],      // Aproveitamento de 1/8 bits por endereço :(
-         possible_values[9];
+         neighborhood[9]    = {0},      // Aproveitamento de 1/8 bits por endereço :(
+         possible_values[9] = {0};
 
     while(z < 81)
     {
