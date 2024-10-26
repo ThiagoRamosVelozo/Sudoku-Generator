@@ -100,8 +100,8 @@ void generate_values(char* matrix)
 
 int main(int argc, char *argv[])
 {
-    char* matrix = malloc(81);
-    int   seed   = time(NULL);
+    char  matrix[81] = {0};
+    int   seed       = time(NULL);
 
     if(argc > 1) 
         seed = atoi(argv[1]);
